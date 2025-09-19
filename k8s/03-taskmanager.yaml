@@ -3,38 +3,38 @@
 # 📝 IMPORTANT: Replace 0215539 with your actual student number (e.g., 0215539)
 
 # Deployment - Manages the Task Manager application Pods
-apiVersion: apps/v1        # API version for Deployment resources
-kind: Deployment          # Resource type - manages application replicas
-metadata:                 # Information about this Deployment
+apiVersion: apps/v1 # API version for Deployment resources
+kind: Deployment # Resource type - manages application replicas
+metadata: # Information about this Deployment
   name: taskmanager-deployment
-  namespace: "02220164"    # 📝 Replace 0215539 with your number
-  labels:                 # Labels for organizing resources
+  namespace: "02220164" # 📝 Replace 0215539 with your number
+  labels: # Labels for organizing resources
     app: taskmanager
     component: frontend
     version: v1
-    student: "02220164"  # 📝 Replace with your student number
-spec:                     # Desired state specification
-  replicas: 2             # Run 2 copies for high availability and load distribution
-  selector:               # How to find Pods managed by this Deployment
-    matchLabels:          # Pods must have these labels
+    student: "02220164" # 📝 Replace with your student number
+spec: # Desired state specification
+  replicas: 2 # Run 2 copies for high availability and load distribution
+  selector: # How to find Pods managed by this Deployment
+    matchLabels: # Pods must have these labels
       app: taskmanager
-  template:               # Template for creating new Pods
-    metadata:             # Labels applied to each Pod
+  template: # Template for creating new Pods
+    metadata: # Labels applied to each Pod
       labels:
-        app: taskmanager  # Must match selector above
+        app: taskmanager # Must match selector above
         version: v1
-    spec:                 # Pod specification
-      containers:         # Containers in each Pod
-      - name: taskmanager # Container name
-        # Docker image from your CI/CD pipeline (update with your DockerHub username)
-        image: teknathdev/task-manager:latest
-        ports:                    # Ports exposed by container
-        - containerPort: 8000     # Port the Flask app listens on
-          name: http             # Named port for Service reference
-        env:                      # Environment variables
-        - name: DATABASE_URL      # Database connection string
-          value: "postgresql://myuser:uWhSZwv54wXv1T7F@10.104.0.6:5432/02220164"
-        - name: SECRET_KEY        # Flask secret key
-          value: "kubernetes-secret-key-02220164"  # 📝 Replace 0215539
-        - name: FLASK_ENV
-          value: "production"
+    spec: # Pod specification
+      containers: # Containers in each Pod
+        - name: taskmanager # Container name
+          # Docker image from your CI/CD pipeline (update with your DockerHub username)
+          image: robin1737/task-manager:235d28da5032b767051174531a724ed3bd5e7380
+          ports: # Ports exposed by container
+            - containerPort: 8000 # Port the Flask app listens on
+              name: http # Named port for Service reference
+          env: # Environment variables
+            - name: DATABASE_URL # Database connection string
+              value: "postgresql://myuser:uWhSZwv54wXv1T7F@10.104.0.6:5432/02220164"
+            - name: SECRET_KEY # Flask secret key
+              value: "kubernetes-secret-key-02220164" # 📝 Replace 0215539
+            - name: FLASK_ENV
+              value: "production"
