@@ -18,7 +18,3 @@ spec: # Service specification
   type: ClusterIP # Service type - accessible only within cluster
   # Change to LoadBalancer for external access
 
-  template:
-    spec:
-      containers:
-        - image: robin1737/task-manager:b455adca96e8ce93bfcf58d0c9cf03173237ae4f
